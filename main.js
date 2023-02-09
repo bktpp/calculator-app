@@ -4,6 +4,7 @@ const one = document.querySelector('.one');
 const two = document.querySelector('.two');
 const three = document.querySelector('.three');
 const plus = document.querySelector('.plus');
+const minus = document.querySelector('.minus');
 const equals = document.querySelector('.equals');
 
 one.addEventListener('click', function() {
@@ -20,25 +21,35 @@ three.addEventListener('click', function() {
 
 plus.addEventListener('click', function() {
     plusSwitch = true;
+    parsingFunc();
+})
+
+minus.addEventListener('click', function() {
+    minusSwitch = true;
+    parsingFunc();
+})
+
+function parsingFunc() {
     let added = parseInt(holdingArea);
     numbersToAdd.push(added);
     holdingArea = '';
     added = '';
-})
+  }; 
+
 
 //master function for adding numbers selected by user returning answer
 equals.addEventListener('click', function() {
     if(plusSwitch === true) {
-    let added = parseInt(holdingArea);
-    numbersToAdd.push(added);
-    holdingArea = '';
-    added = '';
+    parsingFunc();
     addNum(...numbersToAdd);
-    plusSwitch = true;
-    } else if(minusSwitch === true) {
-
-    }
     console.log(addNum(...numbersToAdd));
+    plusSwitch = false;
+    } else if(minusSwitch === true) {
+    parsingFunc();
+    minusNum(...numbersToAdd);
+    console.log(minusNum(...numbersToAdd));
+    minusSwitch = false;
+    }
 })
 
 let numbersToAdd = [];
@@ -55,15 +66,15 @@ function addNum(...args) {
     return sum;
 }
 
-
-function minusNum(...minus) {
-    let sum = 0;
-    for (let i = 0; i < minus.length; i++) {
-        sum -= minus[i];
+// after numbers are parsed and put in array, this function will subtract the integers
+function minusNum(...subtract) {
+    let sum = numbersToAdd[0];
+    for (let i = 1; i < subtract.length; i++) {
+        sum -= subtract[i];
     }
-    console.log(sum);
+    return sum;
 }
-// function for subtracting numbers
+
 
 
 
