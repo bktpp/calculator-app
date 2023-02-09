@@ -1,32 +1,24 @@
 
 //variables for buttons on calculator
-const one = document.querySelector('.one');
-const two = document.querySelector('.two');
-const three = document.querySelector('.three');
-const plus = document.querySelector('.plus');
-const minus = document.querySelector('.minus');
+const numbers = document.querySelectorAll('.number');
 const equals = document.querySelector('.equals');
 
-one.addEventListener('click', function() {
-    holdingArea += '1';
-})
-
-two.addEventListener('click', function() {
-    holdingArea += '2';
-})
-
-three.addEventListener('click', function() {
-    holdingArea += '3';
-})
-
-plus.addEventListener('click', function() {
-    plusSwitch = true;
-    parsingFunc();
-})
-
-minus.addEventListener('click', function() {
-    minusSwitch = true;
-    parsingFunc();
+numbers.forEach(function(number) {
+    number.addEventListener('click', function() {
+        if(number.classList.contains('one')) {
+            holdingArea += '1';
+        } else if(number.classList.contains('two')) {
+            holdingArea += '2';
+        } else if(number.classList.contains('three')) {
+            holdingArea += '3';
+        } else if(number.classList.contains('plus')) {
+            plusSwitch = true;
+            parsingFunc();
+        } else if(number.classList.contains('minus')) {
+            minusSwitch = true;
+            parsingFunc();
+        } 
+    })
 })
 
 function parsingFunc() {
