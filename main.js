@@ -13,23 +13,41 @@ console.log(numbersToAdd);
 
 numbers.forEach(function(number) {
     number.addEventListener('click', function() {
+        // operatorands
         if (number.classList.contains('one')) {
             holdingArea += '1';
         } else if (number.classList.contains('two')) {
             holdingArea += '2';
         } else if (number.classList.contains('three')) {
             holdingArea += '3';
-        } else if (number.classList.contains('plus')) {
+        } else if (number.classList.contains('four')) {
+            holdingArea += '4';
+        } else if (number.classList.contains('five')) {
+            holdingArea += '5';
+        } else if (number.classList.contains('six')) {
+            holdingArea += '6';
+        } else if (number.classList.contains('seven')) {
+            holdingArea += '7';
+        } else if (number.classList.contains('eight')) {
+            holdingArea += '8';
+        } else if (number.classList.contains('nine')) {
+            holdingArea += '9';
+        } else if (number.classList.contains('zero')) {
+            holdingArea += '0';
+        } 
+        // operators
+          else if (number.classList.contains('plus')) {
             plusSwitch = true;
-            if (holdingArea == '') {
-            } else {
-                parsingFunc();
-            }
-            
+            parsingFunc();
+            numbersToAdd.push('+');
             console.log(numbersToAdd);
-        } else if(number.classList.contains('minus')) {
+        } 
+        
+        else if(number.classList.contains('minus')) {
             minusSwitch = true;
             parsingFunc();
+            numbersToAdd.push('-');
+            console.log(numbersToAdd);
         }
       })
     });
@@ -43,21 +61,50 @@ function parsingFunc() {
 
 //master function for adding numbers selected by user returning answer
 equals.addEventListener('click', function() {
-    if(plusSwitch === true) {
-    parsingFunc();
-    addNum(...numbersToAdd);
-    let result = addNum(...numbersToAdd);
-    console.log(addNum(...numbersToAdd));
-    plusSwitch = false;
-    numbersToAdd = [];
-    numbersToAdd.push(result);
-    } else if(minusSwitch === true) {
-    parsingFunc();
-    minusNum(...numbersToAdd);
-    console.log(minusNum(...numbersToAdd));
-    minusSwitch = false;
-    }
+    let added = parseInt(holdingArea);
+    numbersToAdd.push(added);
+    holdingArea = '';
+    added = '';
+    calculate(numbersToAdd);
+    console.log(calculate(numbersToAdd));
 })
+
+function calculate(equation) {
+    let result;
+    let operatorIndex = 1;
+    if (typeof equation[0] === "number") {
+      result = equation[0];
+}   else if (isNaN(equation[0])) {
+      console.log(NaN + " first iteration"); //will make pop up saying invalid format
+}   else {
+      return NaN; //will make pop up saying invalid format
+}   for (let i = operatorIndex; i < equation.length; i += 2) {
+        if (typeof equation[i] !== "string") {
+            return NaN // possible pop up
+        }
+          switch (equation[i]) {
+            case "+":
+               if (typeof equation[i + 1] === "number") {
+                   result += equation[i + 1];
+               } else {
+                   return NaN;
+               }
+               break;
+
+           case "-":
+               if (typeof equation[i + 1] === "number") {
+                   result -= equation[i + 1];
+               } else {
+                   return NaN;
+               }  
+               break;
+               default:
+                return NaN;
+}         
+               
+}
+            return result;
+}
 
 //after numbers are parsed and put in array, this function will add the integers
 function addNum(...args) {
@@ -94,6 +141,16 @@ function minusNum(...subtract) {
         parsingFunc();
     }
 }); */ //need to revisit this for numberpad intergration  
+
+
+
+
+
+
+
+
+
+
 
 
 
