@@ -8,7 +8,6 @@ const answer = document.querySelector('.answer');
 let numbersToAdd = [];
 let holdingArea = '';
 let clear = false;
-
 console.log(numbersToAdd);
 
 numbers.forEach(function(number) {
@@ -50,21 +49,53 @@ numbers.forEach(function(number) {
         
         // operators
         }  else if (number.classList.contains('plus')) {
-            parsingFunc();
-            numbersToAdd.push('+');
-            numberBar.textContent += '+';
+            if (clear === true) {
+              parsingFunc();
+              numbersToAdd.push('+');
+              numberBar.textContent += '+';
+              clear = false;
+             } else {
+              numberBar.textContent = '';
+              numberBar.textContent += calculate(numbersToAdd);
+              numberBar.textContent += '+';
+              answer.textContent = '';
+            }  
         }  else if (number.classList.contains('minus')) {
+          if (clear === true) {
             parsingFunc();
             numbersToAdd.push('-');
             numberBar.textContent += '-';
+            clear = false;
+           } else {
+            numberBar.textContent = '';
+            numberBar.textContent += calculate(numbersToAdd);
+            numberBar.textContent += '-';
+            answer.textContent = '';
+          } 
         }  else if (number.classList.contains('divide')) {
+          if (clear === true) {
             parsingFunc();
             numbersToAdd.push('/');
             numberBar.textContent += '/';
+            clear = false;
+           } else {
+            numberBar.textContent = '';
+            numberBar.textContent += calculate(numbersToAdd);
+            numberBar.textContent += '/';
+            answer.textContent = '';
+          } 
         }  else if (number.classList.contains('multiply')) {
+          if (clear === true) {
             parsingFunc();
             numbersToAdd.push('*');
             numberBar.textContent += '*';
+            clear = false;
+           } else {
+            numberBar.textContent = '';
+            numberBar.textContent += calculate(numbersToAdd);
+            numberBar.textContent += '*';
+            answer.textContent = '';
+          } 
             console.log(numbersToAdd);
         }  else if (number.classList.contains('clear')) {
             numbersToAdd = [];
@@ -72,6 +103,7 @@ numbers.forEach(function(number) {
             added = '';
             numberBar.textContent = '';
             answer.textContent = '';
+            clear = true;
             console.log(numbersToAdd);
         }  
       })
@@ -93,6 +125,7 @@ equals.addEventListener('click', function() {
     calculate(numbersToAdd);
     console.log(calculate(numbersToAdd));
     console.log(numbersToAdd);
+    clear = false;
     answer.textContent = calculate(numbersToAdd);
 })
 
