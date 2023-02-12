@@ -8,11 +8,12 @@ const answer = document.querySelector('.answer');
 let numbersToAdd = [];
 let holdingArea = '';
 let clear = false;
+let masterClear = true;
 console.log(numbersToAdd);
 
 numbers.forEach(function(number) {
     number.addEventListener('click', function() {
-        // operatorands
+        // operands
         if (number.classList.contains('one')) {
             holdingArea += '1';
             numberBar.textContent += '1';
@@ -46,9 +47,13 @@ numbers.forEach(function(number) {
         } else if (number.classList.contains('decimal')) {
             holdingArea += '.';
             numberBar.textContent += '.';
+      }   else if (number.classList.contains('percent')) {
+              
+              answer.textContent += 'percent deez nutz';
+          }
         
         // operators
-        }  else if (number.classList.contains('plus')) {
+          else if (number.classList.contains('plus')) {
             if (clear === true) {
               parsingFunc();
               numbersToAdd.push('+');
@@ -59,6 +64,7 @@ numbers.forEach(function(number) {
               numberBar.textContent += calculate(numbersToAdd);
               numberBar.textContent += '+';
               answer.textContent = '';
+              numbersToAdd.push('+');
             }  
         }  else if (number.classList.contains('minus')) {
           if (clear === true) {
@@ -71,6 +77,7 @@ numbers.forEach(function(number) {
             numberBar.textContent += calculate(numbersToAdd);
             numberBar.textContent += '-';
             answer.textContent = '';
+            numbersToAdd.push('-');
           } 
         }  else if (number.classList.contains('divide')) {
           if (clear === true) {
@@ -83,6 +90,7 @@ numbers.forEach(function(number) {
             numberBar.textContent += calculate(numbersToAdd);
             numberBar.textContent += '/';
             answer.textContent = '';
+            numbersToAdd.push('/');
           } 
         }  else if (number.classList.contains('multiply')) {
           if (clear === true) {
@@ -95,6 +103,7 @@ numbers.forEach(function(number) {
             numberBar.textContent += calculate(numbersToAdd);
             numberBar.textContent += '*';
             answer.textContent = '';
+            numbersToAdd.push('*');
           } 
             console.log(numbersToAdd);
         }  else if (number.classList.contains('clear')) {
@@ -177,6 +186,8 @@ function calculate(equation) {
           return NaN;
       }
     }
+    let resultStr = result.toString();
+    numbersToAdd.push(resultStr);
     return result;
   }
   
