@@ -53,13 +53,14 @@ body {
 
 .answer {
     height: 70px;
-    width: 70px;
+    width: 100%;
     align-self: flex-end;
     font-size: 35px;
     font-family: 'Caveat', cursive;
     font-family: 'Nunito Sans', sans-serif;
-    text-align: center;
+    text-align: end;
     padding-right: 15px;
+    word-wrap: break-word;
 }
 
 .calc-body {
