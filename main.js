@@ -49,8 +49,12 @@ numbers.forEach(function(number) {
             numberBar.textContent += '.';
       }   else if (number.classList.contains('percent')) {
               
-              answer.textContent += 'percent deez nutz';
+              answer.textContent += 'coming soon...';
           }
+          else if (number.classList.contains('parenthesis')) {
+              
+            answer.textContent += 'coming soon...';
+        }
         
         // operators
           else if (number.classList.contains('plus')) {
