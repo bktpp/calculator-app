@@ -8,7 +8,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('/images/saqib-iqbal-digital-kLH3S_aQXds-unsplash.jpg');
+    background-image: url('./images/saqib-iqbal-digital-kLH3S_aQXds-unsplash.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
